@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailProduct.DetailProductActivity">
+    <ProgressBar
+        android:id="@+id/pg_detail_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/ivDetailProduct"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerInside"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailProduct"
+        android:background="@android:color/darker_gray"
+        />
+    <TextView
+        android:id="@+id/tvNamaProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailProduct"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        android:text="Makaroni Mantap"
+        android:textColor="@android:color/black"
+        android:layout_margin="16dp"
+        />
+    <TextView
+        android:id="@+id/tvHargaProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNamaProduk"
+        android:layout_margin="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:text="Rp. 8000"
+        android:textColor="@android:color/black"
+        />
+    <TextView
+        android:id="@+id/stockBarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stok: 200"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/black"
+        />
+
+    <ImageView
+        android:id="@+id/iv_wishlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/stockBarang"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:src="@drawable/heartless"
+        />
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHargaProduk"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        />
+    <TextView
+        android:id="@+id/InformasiProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/vLine"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        android:text="Informasik Produk"
+        android:textColor="@android:color/black"
+        android:layout_margin="16dp"
+        />
+    <TextView
+        android:id="@+id/detailProduk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/InformasiProduk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        android:textColor="@android:color/black"
+        android:layout_margin="16dp"
+
+        />
+
+    <Button
+        android:id="@+id/btnBeli"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_margin="16dp"
+        android:text="Beli Produk"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:background="#4eb9ff"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

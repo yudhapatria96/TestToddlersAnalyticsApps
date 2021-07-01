@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "558922142384",
+    "project_id": "onlineshop-f66dd",
+    "storage_bucket": "onlineshop-f66dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558922142384:android:4733bb0f192c97e5af2175",
+        "android_client_info": {
+          "package_name": "com.onlineshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558922142384-o3m2j16o1vbb7smpd6le7jjvkjjrr51i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onlineshop",
+            "certificate_hash": "22f043a4af61feb09ef458371cfc8ecf6fef00de"
+          }
+        },
+        {
+          "client_id": "558922142384-th0s4hvsvjm8ug7ruhooprs8stht3kqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpuNPs-M5PPTl2ULaP4mZCI2XaQqoDxY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558922142384-th0s4hvsvjm8ug7ruhooprs8stht3kqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

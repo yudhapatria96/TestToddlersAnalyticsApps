@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orderContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="4dp"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true"
+
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/img_order"
+            android:layout_width="120dp"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Invoice: "
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/img_order"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+
+            />
+        <TextView
+            android:id="@+id/tv_nama_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Nama Produk"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/img_order"
+            app:layout_constraintTop_toBottomOf="@+id/tv_invoice"
+            tools:layout_editor_absoluteX="0dp"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_harga_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk"
+            app:layout_constraintStart_toEndOf="@+id/img_order"
+            android:layout_margin="16dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black"
+            android:text="Rp 120.000"
+            />
+
+        <TextView
+            android:id="@+id/tv_jumlah_dibeli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_harga_produk"
+            app:layout_constraintStart_toEndOf="@+id/img_order"
+            android:layout_margin="16dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black"
+            android:text="Rp 120.000"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
