@@ -57,21 +57,43 @@ class CategoryProductActivity : AppCompatActivity() {
         val layoutManger = GridLayoutManager(this, 2)
         rv_product_category.layoutManager = layoutManger
         rv_product_category.adapter = adapter
+        val params = Bundle()
+
         if(intent.getStringExtra("category").toString().equals("All Category")){
             viewModel.callDataAll(
                 "bearer " + authenticatedShared.getToken()
             )
-        }else {
+        }else if(intent.getStringExtra("category").toString().equals("Boy") || intent.getStringExtra("category").toString().equals("Girl")){
+            if(intent.getStringExtra("category").toString().equals("Boy")){
+                viewModel.callDatabyJK(
+                    "bearer " + authenticatedShared.getToken(),
+                    "pria"
+                )
+            }else{
+                viewModel.callDatabyJK(
+                    "bearer " + authenticatedShared.getToken(),
+                    "wanita"
+                )
+
+
+            }
+            params.putString("Gender",intent.getStringExtra("category").toString())
+
+        }
+
+        else {
             viewModel.callData(
                 "bearer " + authenticatedShared.getToken(),
                 intent.getStringExtra("category").toString()
             )
 
-            val params = Bundle()
-            params.putString("name_category",intent.getStringExtra("category").toString())
-            analytics.logEvent("CategoryClickInterest", params)
+
 
         }
+
+        params.putString("name_category",intent.getStringExtra("category").toString())
+        analytics.logEvent("CategoryClickInterest", params)
+
         iv_back.setOnClickListener {
             finish()
         }

@@ -56,6 +56,25 @@ class CategoryProductRepository {
         compositeDisposable.add(disposable)
     }
 
+    fun callApiProductByJK(auth: String?, jk: String?){
+        val disposable= apiService.getProductbyJK(auth, jk)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Consumer<Response<ProductResponse>> {
+                override fun accept(t: Response<ProductResponse>?) {
+
+                    dataProduct.postValue(t?.body())
+
+                }
+            }, object : Consumer<Throwable> {
+                override fun accept(t: Throwable?) {
+                    Log.e("masuk", "error")
+                }
+            }
+            )
+        compositeDisposable.add(disposable)
+    }
+
     fun clearComposite(){
         compositeDisposable.clear()
     }

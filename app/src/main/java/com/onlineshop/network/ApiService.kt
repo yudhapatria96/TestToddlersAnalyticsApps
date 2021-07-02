@@ -32,6 +32,10 @@ interface ApiService {
     @GET("api/product")
     fun getProductbyCategory(@Header("Authorization") token: String?, @Query("category") category: String?): Observable<Response<ProductResponse>>
 
+    @GET("api/product")
+    fun getProductbyJK(@Header("Authorization") token: String?, @Query("jenis_kelamin") jenis_kelamin: String?): Observable<Response<ProductResponse>>
+
+
     @POST("api/order")
     fun postTransaksi(@Header("Authorization") token: String?, @Body data: JsonObject): Observable<Response<TransaksiResponse>>
 

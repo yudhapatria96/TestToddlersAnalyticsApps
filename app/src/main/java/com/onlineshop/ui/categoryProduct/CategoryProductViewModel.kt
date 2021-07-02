@@ -13,6 +13,7 @@ class CategoryProductViewModel : ViewModel() {
 
     fun callDataAll(auth: String?) = repository.callApiProductall(auth)
 
+    fun callDatabyJK(auth: String?, jk: String?) = repository.callApiProductByJK(auth, jk)
 
 
     fun clearComposite() = repository.clearComposite()

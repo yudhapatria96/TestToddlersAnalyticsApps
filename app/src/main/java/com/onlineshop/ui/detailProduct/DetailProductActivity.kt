@@ -82,7 +82,7 @@ class DetailProductActivity : AppCompatActivity() {
             params.putString("Product_Name_Transaction", intent.getStringExtra("namaProduk").toString())
             params.putString("Product_Category_Transaction", intent.getStringExtra("category").toString())
             params.putString("Product_Size_Transaction", intent.getStringExtra("size").toString())
-            params.putString("Product_Gender_Transaction", intent.getStringExtra("jenis_kelamin").toString())
+            params.putString("Gender", intent.getStringExtra("jenis_kelamin").toString())
             params.putString("Product_City_Transaction", authenticationShared.getCity())
 
             analytics.logEvent("Transaction", params)
@@ -100,9 +100,9 @@ class DetailProductActivity : AppCompatActivity() {
             val params = Bundle()
             params.putString("Product_Name_Wishlist", intent.getStringExtra("namaProduk").toString())
             params.putString("Product_Category_Wishlist", intent.getStringExtra("category").toString())
-            params.putString("Product_Size_Transaction", intent.getStringExtra("size").toString())
-            params.putString("Product_Gender_Transaction", intent.getStringExtra("jenis_kelamin").toString())
-            params.putString("Product_City_Transaction", authenticationShared.getCity())
+            params.putString("Product_Size_Wishlist", intent.getStringExtra("size").toString())
+            params.putString("Gender", intent.getStringExtra("jenis_kelamin").toString())
+            params.putString("Product_City_Wishlist", authenticationShared.getCity())
             analytics.logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, params)
         }
 
