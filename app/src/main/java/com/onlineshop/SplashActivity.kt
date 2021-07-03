@@ -7,6 +7,7 @@ import android.os.Handler
 import android.widget.Toast
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.onlineshop.ui.AuthenticatedShared
+import com.onlineshop.ui.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     lateinit var authenticatedShared: AuthenticatedShared
@@ -20,18 +21,26 @@ class SplashActivity : AppCompatActivity() {
         authenticatedShared = AuthenticatedShared(this)
         analytics = FirebaseAnalytics.getInstance(this)
 
-        if(!authenticatedShared.getCity().isNullOrEmpty()){
+        if(!authenticatedShared.getCity().isNullOrEmpty() && !authenticatedShared.getToken().isNullOrEmpty()){
             val params = Bundle()
             params.putString("Login_city",authenticatedShared.getCity())
             analytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, params)
+            Handler().postDelayed({
+
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finish()
+            }, 3000)
+        }else{
+            Handler().postDelayed({
+
+                val i = Intent(this, LoginActivity::class.java)
+                startActivity(i)
+                finish()
+            }, 3000)
         }
 
-        Handler().postDelayed({
 
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
-        }, 3000)
 
     }
 }

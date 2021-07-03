@@ -15,4 +15,6 @@
     <color name="purple_transparant">#f8f1f9</color>
     <color name="purple">#e4cbeb</color>
     <color name="red">#E41B6B</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

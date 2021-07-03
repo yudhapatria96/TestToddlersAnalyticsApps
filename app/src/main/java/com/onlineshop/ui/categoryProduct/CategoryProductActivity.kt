@@ -40,16 +40,15 @@ class CategoryProductActivity : AppCompatActivity() {
             data.let {
                 ph_cp.visibility = View.GONE
 
-
-                if(data.data.isEmpty()){
+                if(data.data.isNullOrEmpty()){
                     tv_product_zonk.visibility = View.VISIBLE
-
                 }else{
-                    dataProduct.addAll(data.data)
-                    adapter.notifyDataSetChanged()
-                    rv_product_category.visibility = View.VISIBLE
-                    ll_home_category.visibility = View.VISIBLE
-                }
+                        dataProduct.addAll(data.data)
+                        adapter.notifyDataSetChanged()
+                        rv_product_category.visibility = View.VISIBLE
+                        ll_home_category.visibility = View.VISIBLE
+                    }
+
 
             }
 
@@ -58,40 +57,48 @@ class CategoryProductActivity : AppCompatActivity() {
         rv_product_category.layoutManager = layoutManger
         rv_product_category.adapter = adapter
         val params = Bundle()
-
-        if(intent.getStringExtra("category").toString().equals("All Category")){
-            viewModel.callDataAll(
-                "bearer " + authenticatedShared.getToken()
+        if(intent.getBooleanExtra("search",false)){
+            viewModel.callDatabySearch(
+                "bearer " + authenticatedShared.getToken(),
+                intent.getStringExtra("category").toString()
             )
-        }else if(intent.getStringExtra("category").toString().equals("Boy") || intent.getStringExtra("category").toString().equals("Girl")){
-            if(intent.getStringExtra("category").toString().equals("Boy")){
-                viewModel.callDatabyJK(
-                    "bearer " + authenticatedShared.getToken(),
-                    "pria"
+            params.putString("Search_Product",intent.getStringExtra("category").toString())
+
+        }else {
+            if (intent.getStringExtra("category").toString().equals("All Category")) {
+                viewModel.callDataAll(
+                    "bearer " + authenticatedShared.getToken()
                 )
-            }else{
-                viewModel.callDatabyJK(
+            } else if (intent.getStringExtra("category").toString()
+                    .equals("Boy") || intent.getStringExtra("category").toString().equals("Girl")
+            ) {
+                if (intent.getStringExtra("category").toString().equals("Boy")) {
+                    viewModel.callDatabyJK(
+                        "bearer " + authenticatedShared.getToken(),
+                        "pria"
+                    )
+                } else {
+                    viewModel.callDatabyJK(
+                        "bearer " + authenticatedShared.getToken(),
+                        "wanita"
+                    )
+
+
+                }
+                params.putString("Gender", intent.getStringExtra("category").toString())
+
+            } else {
+                viewModel.callData(
                     "bearer " + authenticatedShared.getToken(),
-                    "wanita"
+                    intent.getStringExtra("category").toString()
                 )
 
 
             }
-            params.putString("Gender",intent.getStringExtra("category").toString())
+            params.putString("name_category",intent.getStringExtra("category").toString())
 
         }
 
-        else {
-            viewModel.callData(
-                "bearer " + authenticatedShared.getToken(),
-                intent.getStringExtra("category").toString()
-            )
-
-
-
-        }
-
-        params.putString("name_category",intent.getStringExtra("category").toString())
         analytics.logEvent("CategoryClickInterest", params)
 
         iv_back.setOnClickListener {

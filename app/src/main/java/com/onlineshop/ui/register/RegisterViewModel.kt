@@ -9,4 +9,7 @@ class RegisterViewModel : ViewModel() {
     fun callData(email: String?, password: String?, name: String?, city: String?) = repository.callApiRegister(email, password, name, city)
     fun getData(): MutableLiveData<String>? = repository.dataToken
     fun clearComposite() = repository.clearComposite()
+
+    fun getDataError(): MutableLiveData<String>? = repository.dataError
+
 }

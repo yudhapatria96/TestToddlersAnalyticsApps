@@ -29,8 +29,13 @@ class RegisterActivity : AppCompatActivity() {
             AuthenticatedShared(this)
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         viewModel.getData()?.observe(this, Observer { token ->
+
             recordRegister()
             setToken(token)
+        })
+
+        viewModel.getDataError()?.observe(this, {
+            Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
         })
 
         btn_register.setOnClickListener {

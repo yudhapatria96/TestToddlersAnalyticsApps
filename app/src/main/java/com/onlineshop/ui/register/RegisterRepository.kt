@@ -1,6 +1,7 @@
 package com.onlineshop.ui.register
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonObject
 import com.onlineshop.network.ApiNetwork
@@ -16,7 +17,7 @@ class RegisterRepository {
 
     //untuk menyimpan token
     var dataToken = MutableLiveData<String>()
-
+    var dataError = MutableLiveData<String>()
     val compositeDisposable= CompositeDisposable()
 
     fun callApiRegister(email: String?, password: String?, name: String?, city: String?){
@@ -37,7 +38,7 @@ class RegisterRepository {
                 }
             }, object : Consumer<Throwable> {
                 override fun accept(t: Throwable?) {
-                    Log.e("masuk", "error")
+                   dataError.postValue("Password minimal 8 karakter")
                 }
             }
             )
