@@ -99,6 +99,9 @@ class HomeFragment : Fragment() {
             false
         })
 
+        root.img_shopping_basket.setOnClickListener {
+            Toast.makeText(requireContext(), "Available in the future", Toast.LENGTH_SHORT).show()
+        }
         return root
     }
 }

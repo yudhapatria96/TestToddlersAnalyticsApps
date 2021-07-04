@@ -21,7 +21,7 @@ class DetailProductActivity : AppCompatActivity() {
     private lateinit var viewModel: DetailProdukViewModel
     private lateinit var authenticationShared: AuthenticatedShared
     private lateinit var analytics: FirebaseAnalytics
-
+    private var checkWishlist = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
@@ -51,6 +51,7 @@ class DetailProductActivity : AppCompatActivity() {
         viewModel.getWishlist()?.observe(this, Observer {data->
             data.let {
                 if(data.status){
+                    viewModel.callCheckWIshlist("bearer " + authenticationShared.getToken(), intent.getIntExtra("idProduk",0).toString(), authenticationShared.getIdUser())
                     Toast.makeText(DetailProductActivity@this,"Berhasil Masuk Wishlist", Toast.LENGTH_LONG).show()
                     pg_detail_product.visibility = View.GONE
 
@@ -58,6 +59,20 @@ class DetailProductActivity : AppCompatActivity() {
             }
 
         })
+
+        viewModel.getCheckWishlist()?.observe(this, Observer {
+
+            if(it == true){
+                checkWishlist = true
+                iv_wishlist.setImageResource(R.drawable.heartfull)
+            }
+            pg_wishlist.visibility = View.GONE
+            iv_wishlist.visibility = View.VISIBLE
+        })
+
+        viewModel.callCheckWIshlist("bearer " + authenticationShared.getToken(), intent.getIntExtra("idProduk",0).toString(), authenticationShared.getIdUser())
+
+
 
         tvNamaProduk.text=intent.getStringExtra("namaProduk")
         tvHargaProduk.text = "Rp. "+ (intent.getIntExtra("hargaProduk",0)).toString()
@@ -91,19 +106,39 @@ class DetailProductActivity : AppCompatActivity() {
 
 
         iv_wishlist.setOnClickListener {
-                viewModel.callWishlist("bearer " + authenticationShared.getToken(), intent.getIntExtra("idProduk", 0).toString(),intent.getStringExtra("namaProduk"),
-                intent.getIntExtra("hargaProduk",0).toString(), authenticationShared.getIdUser().toString(), intent.getIntExtra("stok",0),
-                    intent.getStringExtra("category"),intent.getStringExtra("category"),intent.getStringExtra("jenis_kelamin"),
-                    intent.getStringExtra("detailProduk"),intent.getStringExtra("logo"))
+
+            if(checkWishlist){
+                Toast.makeText(this, "Product Has Been Added to Wishlist", Toast.LENGTH_LONG).show()
+            }else {
+                viewModel.callWishlist(
+                    "bearer " + authenticationShared.getToken(),
+                    intent.getIntExtra("idProduk", 0).toString(),
+                    intent.getStringExtra("namaProduk"),
+                    intent.getIntExtra("hargaProduk", 0).toString(),
+                    authenticationShared.getIdUser().toString(),
+                    intent.getIntExtra("stok", 0),
+                    intent.getStringExtra("category"),
+                    intent.getStringExtra("category"),
+                    intent.getStringExtra("jenis_kelamin"),
+                    intent.getStringExtra("detailProduk"),
+                    intent.getStringExtra("logo")
+                )
 
 
-            val params = Bundle()
-            params.putString("Product_Name_Wishlist", intent.getStringExtra("namaProduk").toString())
-            params.putString("Product_Category_Wishlist", intent.getStringExtra("category").toString())
-            params.putString("Product_Size_Wishlist", intent.getStringExtra("size").toString())
-            params.putString("Gender", intent.getStringExtra("jenis_kelamin").toString())
-            params.putString("Product_City_Wishlist", authenticationShared.getCity())
-            analytics.logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, params)
+                val params = Bundle()
+                params.putString(
+                    "Product_Name_Wishlist",
+                    intent.getStringExtra("namaProduk").toString()
+                )
+                params.putString(
+                    "Product_Category_Wishlist",
+                    intent.getStringExtra("category").toString()
+                )
+                params.putString("Product_Size_Wishlist", intent.getStringExtra("size").toString())
+                params.putString("Gender", intent.getStringExtra("jenis_kelamin").toString())
+                params.putString("Product_City_Wishlist", authenticationShared.getCity())
+                analytics.logEvent(FirebaseAnalytics.Event.ADD_TO_WISHLIST, params)
+            }
         }
 
     }

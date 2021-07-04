@@ -38,7 +38,7 @@ class RegisterRepository {
                 }
             }, object : Consumer<Throwable> {
                 override fun accept(t: Throwable?) {
-                   dataError.postValue("Password minimal 8 karakter")
+                   dataError.postValue(t?.message)
                 }
             }
             )

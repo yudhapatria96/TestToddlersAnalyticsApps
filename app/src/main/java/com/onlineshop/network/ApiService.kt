@@ -1,6 +1,7 @@
 package com.onlineshop.network
 
 import com.google.gson.JsonObject
+import com.onlineshop.ui.detailProduct.CheckWishlist
 import com.onlineshop.ui.detailProduct.PostWishlistResponse
 import com.onlineshop.ui.detailProduct.TransaksiResponse
 import com.onlineshop.ui.home.CategoryResponse
@@ -57,4 +58,10 @@ interface ApiService {
 
     @POST("api/wishlist")
     fun postWishlist(@Header("Authorization") token: String?, @Body data: JsonObject): Observable<Response<PostWishlistResponse>>
+
+
+    @GET("api/wishlist")
+    fun getWishlistById(@Header("Authorization") token: String?,@Query("product_id") product_id:String?, @Query("id_pelanggan") idPelanggan: Int?): Observable<Response<CheckWishlist>>
+
+
 }

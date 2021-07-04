@@ -18,7 +18,8 @@ class DetailProdukViewModel :ViewModel() {
 
     fun getWishlist(): MutableLiveData<PostWishlistResponse>? = repository.dataWishlist
 
-
+    fun callCheckWIshlist(auth: String?, product_id: String?, idPelanggan: Int?) = repository.callCheckWishlist(auth, product_id, idPelanggan)
+    fun getCheckWishlist(): MutableLiveData<Boolean>? = repository.dataCheckWishlist
 
     fun clearComposite() = repository.clearComposite()
 }

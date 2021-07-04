@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.onlineshop.network.ApiNetwork
 import com.onlineshop.network.ApiService
 import com.onlineshop.ui.profile.ResponseUpdateProfile
+import com.onlineshop.ui.wishlist.WishlistResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
@@ -24,7 +25,7 @@ class TransaksiRepository {
     var dataWishlist = MutableLiveData<PostWishlistResponse>()
 
     val compositeDisposable= CompositeDisposable()
-
+    var dataCheckWishlist= MutableLiveData<Boolean>()
     fun callTransaksi(auth: String?, product_id: String?, product_name: String?, price:String?, pelanggan_id:String?,
                       qty:Int?, category:String?, size:String?, jenis_kelamin:String?, city:String?){
         val jsonTransaksi = JsonObject()
@@ -80,6 +81,30 @@ class TransaksiRepository {
                 override fun accept(t: Throwable?) {
                     Log.e("apayaaa", t?.printStackTrace().toString())
 
+                }
+            }
+            )
+        compositeDisposable.add(disposable)
+    }
+
+    fun callCheckWishlist(auth: String?, product_id: String?,idPelanggan: Int?){
+        val disposable= apiService.getWishlistById(auth, product_id,idPelanggan)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Consumer<Response<CheckWishlist>> {
+                override fun accept(t: Response<CheckWishlist>?) {
+                    if (t?.body()?.data != null) {
+                            dataCheckWishlist.postValue(true)
+                        }else{
+                        dataCheckWishlist.postValue(false)
+
+                    }
+
+
+                }
+            }, object : Consumer<Throwable> {
+                override fun accept(t: Throwable?) {
+                    Log.e("masuk", "error")
                 }
             }
             )
